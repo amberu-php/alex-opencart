@@ -1,0 +1,155 @@
+.amberu-easy-modal {
+	width: 600px;
+	padding: 10px 15px;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+	background-color: #CBCBCB;
+	border-radius: 4px;
+	display: none;
+}
+@media (max-width: 767px) {
+	.amberu-easy-modal {
+		max-width: 90%;
+	}
+}
+#amberu-easy-modal-product {
+	width: 580px;
+}
+#amberu-easy-modal-product .amberu-easy-modal-control {
+	text-align: left;
+}
+#amberu-easy-modal-product .amberu-easy-modal-control .btn {
+	padding: 6px 8px;
+	font-size: 13px;
+}
+.amberu-easy-modal-inner-wrapper {
+	overflow: auto;
+}
+.amberu-loading {
+	font-size: 25px;
+	padding: 20px;
+	text-align: center;
+}
+.amberu-easy-modal-title {
+	font-size: 16px;
+	padding-bottom: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: bold;
+}
+.amberu-easy-modal-content {
+	padding: 20px;
+	font-size: 15px;
+	line-height: 24px;
+	background-color: #fff;
+	overflow: auto;
+}
+.amberu-easy-modal-content .amberu-text-highlight {
+	font-weight: bold;
+}
+.amberu-easy-modal .tab-content {
+	margin: 0px 10px;
+}
+.amberu-easy-modal-control {
+	padding-top: 10px;
+}
+.amberu-easy-modal-control .btn {
+    margin-bottom: 8px;
+}
+.amberu-easy-modal-control .btn:first-child {
+	margin-right: 10px;
+}
+.amberu-easy-modal-control .btn-warning {
+	color: #313c42;
+}
+.amberu-easy-modal-control .btn-warning:hover {
+	color: #fff;
+}
+.amberu-my-modal {
+	padding: 15px 15px;
+	-webkit-box-shadow: -5px 5px 7px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: -5px 5px 7px 0px rgba(0,0,0,0.75);
+	box-shadow: -5px 5px 7px 0px rgba(0,0,0,0.75);
+	background-color: #CBCBCB;
+	border-radius: 4px;
+	display: none;
+	position: fixed;
+	z-index: 999999;
+}
+@media (max-width: 767px) {
+	.amberu-my-modal {
+		max-width: 90%;
+	}
+}
+.amberu-my-modal-inner-wrapper {
+	overflow: auto;
+}
+.amberu-my-modal-pop-up-info {
+	width: 300px;
+	height: 150px;
+	top: 50%;
+	margin-top: -75px;
+	right: 0px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	filter: alpha(opacity=90);
+	-moz-opacity: 0.9;
+	-khtml-opacity: 0.9;
+	opacity: 0.9;
+}
+.amberu-my-modal-hovered {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+	filter: alpha(opacity=100) !important;
+	-moz-opacity: 1 !important;
+	-khtml-opacity: 1 !important;
+	opacity: 1 !important;	
+}
+.amberu-my-modal-title {
+	font-size: 16px;
+	padding-bottom: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: bold;
+}
+.amberu-my-modal-pop-up-info .amberu-my-modal-title {
+	display: none;
+}
+.amberu-my-modal-content {
+	padding: 20px;
+	font-size: 15px;
+	line-height: 24px;
+	background-color: #fff;
+	overflow: auto;
+}
+.amberu-my-modal-pop-up-info .amberu-my-modal-content {
+	height: 120px;
+}
+.amberu-my-modal-pop-up-info .amberu-btn-x {
+	position: absolute;
+	left: -16px;
+	top: -16px;
+}
+.amberu-btn-x {
+	box-shadow: none;
+	/*text-transform: uppercase;*/
+	/*padding: 2px 6px;*//*uppercase*/
+	text-transform: lowercase;
+	padding: 0px 7px 4px;/*lowercase*/
+	font-size: 25px;
+	line-height: 25px;
+	max-width: 31px;
+	border-radius: 20px;
+	color: #fff;
+	-webkit-transition: 150ms ease-out;
+	-moz-transition: 150ms ease-out;
+	-o-transition: 150ms ease-out;
+	transition: 150ms ease-out;
+}
+.amberu-btn-x:hover {
+	/*padding: 4px 8px;*//*uppercase*/
+	padding: 2px 9px 6px;/*lowercase*/
+	max-width: 35px;
+}
+.amberu-my-modal-pop-up-info .amberu-btn-x:hover {
+	top: -20px;
+}
