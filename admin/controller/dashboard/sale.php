@@ -40,7 +40,7 @@ class ControllerDashboardSale extends Controller {
 			*/
 		
 		//with amberu method amberuGetTotalPurchasedQuantity()
-		$data['total'] = $this->model_report_product->amberuGetTotalPurchasedQuantity();//you could pass no parameters
+		$data['total'] = $this->model_report_product->amberuGetTotalPurchasedQuantity();//you could not pass parameters
 		$data['total'] .= $amberu_quantity_abbreviated;
 		
 		//comment out $data['total'] assigned with total sales money amount 

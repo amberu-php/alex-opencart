@@ -48,6 +48,9 @@
     </div>
     <hr>
     <p id="amberu-footer-powered"><?php echo $powered; ?></p> 
+	
+	<div style="font-weight:lighter;"><img src="http://seosolution.ua/sslogo.png" style="margin-bottom:9px;!important"> Продвижение интернет магазина от <a href="https://seosolution.ua/" rel="nofollow">https://seosolution.ua/</a>.</div>
+	
   </div>
 </footer>
 

@@ -80,32 +80,40 @@ class ControllerCommonSeoUrl extends Controller {
 
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
-				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
-					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
-
-					if ($query->num_rows && $query->row['keyword']) {
-						$url .= '/' . $query->row['keyword'];
-
-						unset($data[$key]);
-					}
-				} elseif ($key == 'path') {
-					$categories = explode('_', $value);
-
-					foreach ($categories as $category) {
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'category_id=" . (int)$category . "'");
-
-						if ($query->num_rows && $query->row['keyword']) {
-							$url .= '/' . $query->row['keyword'];
-						} else {
-							$url = '';
-
-							break;
-						}
-					}
-
-					unset($data[$key]);
-				}
+	if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
+ 
+		if ($query->num_rows && $query->row['keyword']) {
+			$url .= '/' . $query->row['keyword'];
+ 
+			unset($data[$key]);
+		}
+	} elseif ($key == 'path') {
+		$categories = explode('_', $value);
+ 
+		foreach ($categories as $category) {
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'category_id=" . (int)$category . "'");
+ 
+			if ($query->num_rows && $query->row['keyword']) {
+				$url .= '/' . $query->row['keyword'];
+			} else {
+				$url = '';
+ 
+				break;
 			}
+		}
+ 
+		unset($data[$key]);
+	}else{
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($value) . "'");
+		if (($query->num_rows && $query->row['keyword']) or $value == 'common/home') {
+			$url .= '/' . $query->row['keyword'];
+ 
+			unset($data[$key]);
+		}
+ 
+	}
+}
 		}
 
 		if ($url) {

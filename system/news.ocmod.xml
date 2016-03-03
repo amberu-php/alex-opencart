@@ -1,0 +1,135 @@
+<modification>
+	<id>News</id>
+	<name>News</name>
+	<version>OC 2.x</version>
+	<author>Equotix</author>
+	<edit>Ален - http://forum.opencart-russia.ru/members/alen.2/</edit>
+	<file path="admin/view/template/common/menu.tpl">
+		<operation>
+			<search><![CDATA[
+				<li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
+			]]></search>
+			<add position="after"><![CDATA[
+				<li><a href="<?php echo $news; ?>">News</a></li>
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/common/menu.php">
+		<operation>
+			<search><![CDATA[
+				$data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');	
+			]]></search>
+			<add position="after"><![CDATA[
+				$data['news'] = $this->url->link('extension/news', 'token=' . $this->session->data['token'], 'SSL');	
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/footer.php">
+		<operation>
+			<search><![CDATA[
+				$data['text_account'] = $this->language->get('text_account');
+			]]></search>
+			<add position="after"><![CDATA[
+				$data['news'] = $this->url->link('information/news');
+				$data['text_news'] = $this->language->get('text_news');
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/*/common/footer.php">
+		<operation>
+			<search index="1"><![CDATA[
+				$_
+			]]></search>
+			<add position="after"><![CDATA[
+				$_['text_news'] = 'Our News';
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/common/footer.tpl">
+		<operation>
+			<search><![CDATA[
+				<li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
+			]]></search>
+			<add position="before"><![CDATA[
+				<li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/seo_url.php">
+		<operation>
+			<search><![CDATA[
+				if ($url[0] == 'information_id') {
+			]]></search>
+			<add position="before"><![CDATA[
+				if ($url[0] == 'news_id') {
+					$this->request->get['news_id'] = $url[1];
+				}	
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+				} elseif (isset($this->request->get['information_id'])) {
+			]]></search>
+			<add position="before"><![CDATA[
+				} elseif (isset($this->request->get['news_id'])) {
+					$this->request->get['route'] = 'information/news/news';
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+			]]></search>
+			<add position="replace"><![CDATA[
+				if (($data['route'] == 'information/news/news' && $key == 'news_id') || ($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+				if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id') {
+			]]></search>
+			<add position="replace"><![CDATA[
+				if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'news_id') {
+			]]></add>
+		</operation>
+		
+		<operation error="skip" trim="false">
+			<search><![CDATA[
+				if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id'  && $url[0] != 'category_id' && $url[0] != 'product_id') {
+			]]></search>
+			<add position="replace"><![CDATA[
+				if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'news_id') {
+			]]></add>
+		</operation>
+		
+	</file>
+	<file path="admin/controller/common/dashboard.php">
+		<operation error="skip">
+			<search><![CDATA[
+				function index()
+			]]></search>
+			<add position="after"><![CDATA[	
+				$this->load->model('setting/news');
+				$results = $this->model_setting_news->getNews();
+				$data['json'] = json_decode($results['text'], true);
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/common/dashboard.tpl" >
+		<operation error="skip">
+			<search><![CDATA[
+				<?php if ($error_install) { ?>
+			]]></search>
+			<add position="before"><![CDATA[
+				<?php if ($json) { ?>
+				<div class="alert alert-info">
+					<ul style="margin:0px; padding: 0px;">
+					<?php foreach ($json as $value) { ?>
+						<li style="margin: 0px 20px;"><?php echo $value['title']; ?></li>
+					<?php }	?>
+					</ul>
+				</div>
+				<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+</modification>

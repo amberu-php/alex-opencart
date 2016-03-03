@@ -217,7 +217,7 @@
 			  <ul class="nav navbar-nav">
 				<?php foreach ($categories as $category) { ?>
 				<?php if (($category['amberu_multiprice']) && ($amberu_pricelists)) { ?>
-						<li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle amberu-menu-first-a" data-toggle="dropdown"><?php echo $category['name']; ?></a>
+						<li class="dropdown"><a href="<?php echo $category['href']; ?>" onclick="javascript:location.href='<?php echo $category['href']; ?>'" class="dropdown-toggle amberu-menu-first-a" data-toggle="dropdown"><?php echo $category['name']; ?></a>
 							<div class="dropdown-menu">
 								<div class="dropdown-inner">
 									<ul class="list-unstyled">
