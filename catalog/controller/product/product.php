@@ -262,6 +262,8 @@ class ControllerProductProduct extends Controller {
 			
 			$data['amberu_text_pricelist_select'] = $this->language->get('amberu_text_product_pricelist_select');
 			$data['product_details'] = $this->language->get('product_details');
+			$data['text_amberu_out_of_stock'] = $this->language->get('text_amberu_out_of_stock');
+
 			//end
 			
 			$data['text_select'] = $this->language->get('text_select');
@@ -344,7 +346,8 @@ class ControllerProductProduct extends Controller {
 					//initialize next
 					'amberu_product_option_id' => 0,
 					'amberu_product_option_value_id' => 0,
-					'amberu_option_value_name' => ''
+					'amberu_option_value_name' => '',
+					'amberu_option_value_quantity' => 0
 				);
 			}
 
@@ -379,8 +382,17 @@ class ControllerProductProduct extends Controller {
 
 			$data['options'] = array();
 
+			//AMBERU - images_to_options
+			$amberu_images_to_option = false;
+			$amberu_images_to_option_processed = false;
+
 			foreach ($this->model_catalog_product->getProductOptions($this->request->get['product_id']) as $option) {
 				$product_option_value_data = array();
+
+				//AMBERU - images_to_options
+				if ($amberu_images_to_option) {
+					$amberu_images_to_option_processed = true;
+				}
 
 				foreach ($option['product_option_value'] as $option_value) {
 					if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
@@ -398,16 +410,22 @@ class ControllerProductProduct extends Controller {
 							'price'                   => $price,
 							'price_prefix'            => $option_value['price_prefix']
 						);
-						
-						//AMBERU - images_to_options
+					}
+					//AMBERU - images_to_options
+					if (!$amberu_images_to_option_processed) {
 						foreach ($data['images'] as $amberu_key => $amberu_image) {
 							if ($amberu_image['amberu_option_value_id'] == $option_value['option_value_id']) {
+								if (!$amberu_images_to_option) {
+									$amberu_images_to_option = true;
+								}
 								$data['images'][$amberu_key]['amberu_product_option_id'] = $option['product_option_id'];
 								$data['images'][$amberu_key]['amberu_product_option_value_id'] = $option_value['product_option_value_id'];
 								$data['images'][$amberu_key]['amberu_option_value_name'] = $option_value['name'];
+								$data['images'][$amberu_key]['amberu_option_value_quantity'] = $option_value['quantity'];
 							}
 						}
 					}
+
 				}
 
 				$data['options'][] = array(

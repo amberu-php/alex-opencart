@@ -1,7 +1,7 @@
 <?php
 class ControllerAmberuProduct extends Controller {
 	public function ajaxGetProduct() {
-		$result = $this->getProduct();
+		$result = $this->getProductForModal();
 		if (!isset($result['error_status'])) {
 			$data['product_html'] = $result['product_html'];
 			$data['product_href'] = $result['product_href'];
@@ -15,7 +15,7 @@ class ControllerAmberuProduct extends Controller {
 		$this->response->setOutput(json_encode($data));
 	}
 	public function ajaxGetProductImages() {
-		$result = $this->getProductImages();
+		$result = $this->getProductImagesForModal();
 		if (!isset($result['error_status'])) {
 			$data['product_images_html'] = $result['product_images_html'];	
 		}
@@ -26,7 +26,7 @@ class ControllerAmberuProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
 	}
-	public function getProduct() {
+	public function getProductForModal() {
 		
 		$this->load->language('product/product');
 
@@ -313,10 +313,10 @@ class ControllerAmberuProduct extends Controller {
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/amberu/product.tpl')) {
-				$data['product_html'] = $this->load->view($this->config->get('config_template') . '/template/amberu/product.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/amberu/modal_product.tpl')) {
+				$data['product_html'] = $this->load->view($this->config->get('config_template') . '/template/amberu/modal_product.tpl', $data);
 			} else {
-				$data['product_html'] = $this->load->view('default/template/amberu/product.tpl', $data);
+				$data['product_html'] = $this->load->view('default/template/amberu/modal_product.tpl', $data);
 			}
 			return $data;
 		} else {
@@ -350,7 +350,7 @@ class ControllerAmberuProduct extends Controller {
 			}
 		}
 	}
-	public function getProductImages() {
+	public function getProductImagesForModal() {
 		$this->load->language('product/product');
 
 		if (isset($this->request->get['product_id'])) {
@@ -371,6 +371,7 @@ class ControllerAmberuProduct extends Controller {
 			$this->load->language('amberu/multiprice');
 
 			$data['amberu_text_no_images'] = $this->language->get('amberu_text_no_images');
+			$data['text_amberu_out_of_stock'] = $this->language->get('text_amberu_out_of_stock');
 			
 			$data['text_select'] = $this->language->get('text_select');
 			$data['text_option'] = $this->language->get('text_option');
@@ -404,7 +405,8 @@ class ControllerAmberuProduct extends Controller {
 					//initialize next
 					'amberu_product_option_id' => 0,
 					'amberu_product_option_value_id' => 0,
-					'amberu_option_value_name' => ''
+					'amberu_option_value_name' => '',
+					'amberu_option_value_quantity' => 0
 				);
 			}
 
@@ -432,22 +434,22 @@ class ControllerAmberuProduct extends Controller {
 							'price'                   => $price,
 							'price_prefix'            => $option_value['price_prefix']
 						);
-						
-						//AMBERU - images_to_options
-						foreach ($data['images'] as $amberu_key => $amberu_image) {
-							if ($amberu_image['amberu_option_value_id'] == $option_value['option_value_id']) {
-								if (!$amberu_images_to_option) {
-									$amberu_images_to_option = true;
-								}
-								$data['images'][$amberu_key]['amberu_product_option_id'] = $option['product_option_id'];
-								$data['images'][$amberu_key]['amberu_product_option_value_id'] = $option_value['product_option_value_id'];
-								$data['images'][$amberu_key]['amberu_option_value_name'] = $option_value['name'];
+					}
+					//AMBERU - images_to_options
+					foreach ($data['images'] as $amberu_key => $amberu_image) {
+						if ($amberu_image['amberu_option_value_id'] == $option_value['option_value_id']) {
+							if (!$amberu_images_to_option) {
+								$amberu_images_to_option = true;
 							}
+							$data['images'][$amberu_key]['amberu_product_option_id'] = $option['product_option_id'];
+							$data['images'][$amberu_key]['amberu_product_option_value_id'] = $option_value['product_option_value_id'];
+							$data['images'][$amberu_key]['amberu_option_value_name'] = $option_value['name'];
+							$data['images'][$amberu_key]['amberu_option_value_quantity'] = $option_value['quantity'];
 						}
 					}
 				}
 
-				//AMBERU - images_to_options - only options that is сorresponded to image(s)
+				//AMBERU - images_to_options - only options that are in appliance to image(s)
 				if ($amberu_images_to_option) {
 					$data['options'][] = array(
 						'product_option_id'    => $option['product_option_id'],
@@ -458,14 +460,15 @@ class ControllerAmberuProduct extends Controller {
 						'value'                => $option['value'],
 						'required'             => $option['required']
 					);
+					break;
 				}
 				
 			}			
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/amberu/product_images.tpl')) {
-				$data['product_images_html'] = $this->load->view($this->config->get('config_template') . '/template/amberu/product_images.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/amberu/modal_product_images.tpl')) {
+				$data['product_images_html'] = $this->load->view($this->config->get('config_template') . '/template/amberu/modal_product_images.tpl', $data);
 			} else {
-				$data['product_images_html'] = $this->load->view('default/template/amberu/product_images.tpl', $data);
+				$data['product_images_html'] = $this->load->view('default/template/amberu/modal_product_images.tpl', $data);
 			}
 			return $data;
 		} else {

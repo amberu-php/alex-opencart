@@ -31,6 +31,7 @@ $_['text_semi_month']          = 'half-month';
 $_['text_month']               = 'month';
 $_['text_year']                = 'year';
 $_['product_details']          = 'Product Details';
+$_['text_amberu_out_of_stock']  = 'Out of stock';
 
 // Entry
 $_['entry_qty']                = 'Qty';

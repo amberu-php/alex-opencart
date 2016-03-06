@@ -363,7 +363,7 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 			else {
-				//don't need it any more. if this is not multiprice product so then add it to cart with it price. LOGICAL
+				//don't need it any more. if this is not multiprice product so then add it to cart with it's price. LOGICAL
 				//$_SESSION['amberu_cart']['pricelist_number'] = null;
 			}
 		}

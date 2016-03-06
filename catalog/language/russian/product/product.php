@@ -64,6 +64,7 @@ $_['text_year']                               = 'год';
 
 //amberu
 $_['product_details']          				  = 'Подробности';
+$_['text_amberu_out_of_stock']  = 'Нет в наличии';
 //end
 
 // Entry

@@ -12,7 +12,19 @@
 	<li class="image-additional <?php echo 'input-option' . $image['amberu_product_option_id'] . '-value' . $image['amberu_product_option_value_id']; ?>">
 	  <a class="thumbnail" href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>"> 
 		<img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
-		<div class="amberu-thumbnail-caption"><?php echo $image['amberu_option_value_name']; ?></div>
+		<div class="amberu-thumbnail-caption">
+			<?php
+			if ($image['amberu_option_value_id']) {
+				echo $image['amberu_option_value_quantity'] ?
+					$image['amberu_option_value_name'] :
+					$image['amberu_option_value_name']
+					. "<br>"
+					. "<span class=\"text-danger\">"
+					. $text_amberu_out_of_stock
+					. "</span>";
+			}
+			?>
+		</div>
 	  </a>
 	  <input class="amberu-full-thumb" type="hidden" value="<?php echo $image['amberu_full_thumb']; ?>">
 	  <!--images-preload-->
@@ -66,7 +78,7 @@ $(document).ready(function() {
 		}
 	});
 });
-//images-to-options realization
+//images-to-options implementation
 $('[amberu-duplicate*="input-option"]').change(function(e) {
 	var thumbSelector = $(this).attr('amberu-duplicate') + '-value' + $(this).val();
 	var popupImage = $('.' + thumbSelector + ' a').attr('href');

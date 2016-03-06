@@ -3,3 +3,5 @@
 config.php
 crossdomain.xml
 image
+system/cache
+system/logs

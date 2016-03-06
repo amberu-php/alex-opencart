@@ -24,4 +24,4 @@ $_['text_model_desc']   = 'Модель (Я - А)';
 $_['text_limit']        = 'Показать:';
 $_['text_amberu_list']  = 'Список';
 $_['text_amberu_grid']  = 'Таблица';
-
+$_['text_amberu_out_of_stock']  = 'Нет в наличии';
