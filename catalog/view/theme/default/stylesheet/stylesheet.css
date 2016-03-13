@@ -621,6 +621,9 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	color: #F76C16;
 	font-weight: bold;
 }
+.amberu-text-danger {
+	color: #a94442;
+}
 @media (max-width: 991px) {
 	.amberu-multiprice-inner-container {
 		width: 100%;
@@ -795,16 +798,20 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 h2.price {
 	margin: 0;
 }
-.product-thumb .price {
+.price {
 	color: #0E9C52;
+}
+.product-thumb .price {
 	font-size: 18px;
 }
 .product-thumb .price-new {
 	font-weight: 600;
 }
-.product-thumb .price-old {
+.price-old {
 	color: #999;
 	text-decoration: line-through;
+}
+.product-thumb .price-old {
 	margin-left: 10px;
 }
 .product-thumb .price-tax {
@@ -972,7 +979,6 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	border-top: 1px solid #d1c0b8;
 }
 #amberu-product-main-info .amberu-price {
-	color: #0E9C52;
 	font-weight: bold;
 	margin-top: 10px;
 }

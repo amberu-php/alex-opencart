@@ -74,7 +74,7 @@
                             $image['amberu_option_value_name'] :
                             $image['amberu_option_value_name']
                             . "<br>"
-                            . "<span class=\"text-danger\">"
+                            . "<span class=\"amberu-text-danger\">"
                             . $text_amberu_out_of_stock
                             . "</span>";
                     }
@@ -189,40 +189,32 @@
         <div id="amberu-product-column-container" class="<?php echo $class; ?>">
 			<div id="amberu-product-main-info">
 			  <h1><?php echo $heading_title; ?></h1>
-				<?php if($amberu_multiprice) { ?>
-				  <ul id="ul-amberu-price" class="list-unstyled">
-					<li>
-					  <h2 class="amberu-price"><?php echo $price; ?></h2>
-					</li>
-				  </ul>
-				<?php } else { ?>
-				  <ul id="ul-amberu-price" class="list-unstyled">
-					<?php if (!$special) { ?>
-					<li>
-					  <h2 class="amberu-price"><?php echo $price; ?></h2>
-					</li>
-					<?php } else { ?>
-					<li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
-					<li>
-					  <h2 class="amberu-price"><?php echo $special; ?></h2>
-					</li>
-					<?php } ?>
-					<?php if ($tax) { ?>
-					<li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
-					<?php } ?>
-					<?php if ($points) { ?>
-					<li><?php echo $text_points; ?> <?php echo $points; ?></li>
-					<?php } ?>
-					<?php if ($discounts) { ?>
-					<li>
-					  <hr>
-					</li>
-					<?php foreach ($discounts as $discount) { ?>
-					<li><?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
-					<?php } ?>
-					<?php } ?>
-				  </ul>
-				<?php } ?>
+              <ul id="ul-amberu-price" class="list-unstyled">
+                <?php if (!$special) { ?>
+                <li>
+                  <h2 class="amberu-price price"><?php echo $price; ?></h2>
+                </li>
+                <?php } else { ?>
+                <li><h2 class="price-old"><?php echo $price; ?></h2></li>
+                <li>
+                  <h2 class="amberu-price amberu-text-danger"><?php echo $special; ?></h2>
+                </li>
+                <?php } ?>
+                <?php if ($tax) { ?>
+                <li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
+                <?php } ?>
+                <?php if ($points) { ?>
+                <li><?php echo $text_points; ?> <?php echo $points; ?></li>
+                <?php } ?>
+                <?php if ($discounts) { ?>
+                <li>
+                  <hr>
+                </li>
+                <?php foreach ($discounts as $discount) { ?>
+                <li><?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
+                <?php } ?>
+                <?php } ?>
+              </ul>
 			  <h3><?php echo $product_details; ?></h3>
 			  <ul class="list-unstyled">
 				<?php if ($manufacturer) { ?>

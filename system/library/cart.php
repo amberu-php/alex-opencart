@@ -286,9 +286,20 @@ class Cart {
 							if (($_SESSION['amberu_cart']['pricelist_number'] != null) && ($product_query->row['amberu_multiprice'])) {
 								$amberu_prices = explode(',', $product_query->row['amberu_prices']);
 								$amberu_pricelist_number = $_SESSION['amberu_cart']['pricelist_number'];
-								//-1 coz pricelists index starts from 1, but new array index goes from 0
-								$this->data[$key]['price'] = isset($amberu_prices[$amberu_pricelist_number-1]) ? $amberu_prices[$amberu_pricelist_number-1] : 0.00;
-								$this->data[$key]['total'] = isset($amberu_prices[$amberu_pricelist_number-1]) ? $amberu_prices[$amberu_pricelist_number-1] * $quantity : 0.00;
+								$amberu_special_prices_query = $this->db->query("SELECT amberu_prices FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
+								if ($amberu_special_prices_query->num_rows) {
+									$amberu_special_prices = json_decode($amberu_special_prices_query->row['amberu_prices'], true);
+									$this->data[$key]['price'] = $amberu_special_prices[$amberu_pricelist_number];
+									$this->data[$key]['total'] = $amberu_special_prices[$amberu_pricelist_number] * $quantity;
+								} elseif (isset($amberu_prices[$amberu_pricelist_number-1])) {
+									//-1 coz pricelists index starts from 1, but new array index goes from 0
+									// this legacy shit should be refactored as HELL!!!
+									$this->data[$key]['price'] = $amberu_prices[$amberu_pricelist_number-1];
+									$this->data[$key]['total'] = $amberu_prices[$amberu_pricelist_number-1] * $quantity;
+								} else {
+									$this->data[$key]['price'] = 0.00;
+									$this->data[$key]['total'] = 0.00;
+								}
 							}
 						}
 						else {

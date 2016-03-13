@@ -4,10 +4,10 @@
     <div class="container-fluid">
       <div class="pull-right">
 		<!--AMBERU-->
-		<button onclick="amberuSubmitForm();" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>		
+		<button onclick="amberuSubmitForm();" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
 		<button id="amberu-submit-btn" style="display: none;" type="submit" form="form-product" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
 		<!---->
-		
+
 		<a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
@@ -106,7 +106,7 @@
                   <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                   <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                 </div>
-              </div>            
+              </div>
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-model"><?php echo $entry_model; ?></label>
                 <div class="col-sm-10">
@@ -248,7 +248,7 @@
                   <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" class="form-control" />
                   <?php if ($error_keyword) { ?>
                   <div class="text-danger"><?php echo $error_keyword; ?></div>
-                  <?php } ?>               
+                  <?php } ?>
                 </div>
               </div>
               <div class="form-group">
@@ -424,7 +424,7 @@
                 </div>
               </div>
             </div>
-			
+
 			<!--AMBERU-->
 			<style type="text/css">
 				h1, h2, h3, h4, h5, h6 {
@@ -444,11 +444,11 @@
 				#amberu-btn-group {
 					text-align: center;
 				}
-				#caption-empty-multiprice_categories {	
+				#caption-empty-multiprice_categories {
 					font-size: 15px;
 					color: #BF2525;
 				}
-				#caption-multiprice-category-choice {	
+				#caption-multiprice-category-choice {
 					font-size: 14px;
 					font-weight: bold;
 				}
@@ -462,7 +462,7 @@
 				  <?php } else 	{ ?>
 							<div id="caption-multiprice-category-choice">
 								<br/>
-								В случае если продукт не отмечен как мульти-ценовой, а во вкладке "Связи" выбраны мультиценовые категории, 
+								В случае если продукт не отмечен как мульти-ценовой, а во вкладке "Связи" выбраны мультиценовые категории,
 								при сохранении они будут удалены из списка, и наоборот соответственно.
 								<br/><br/>
 							</div>
@@ -479,14 +479,14 @@
 						  <?php } else { ?>
 						  <input type="checkbox" name="amberu_multiprice" value="1" id="input-amberu-multiprice" onchange="amberuCheckboxChange(this)" />
 						  <?php } ?>
-						  &nbsp; 
+						  &nbsp;
 						</label>
 					  </div>
 					</div>
 				  </div>
 				  <hr />
 				<div id="amberu-prices-container" style="<?php echo $amberu_multiprice ? "display: block;" : "display: none;";?>">
-					<?php 
+					<?php
 						$amberu_price_count = 0;
 						for($amberu_i = 0; $amberu_i < $amberu_pricelists_count; $amberu_i++) {
 							$amberu_price_count++;
@@ -497,13 +497,13 @@
 									</span>
 								</label>
 								<div class="col-sm-10">
-									<input type="text" name="amberu_price_array[<?php echo $amberu_price_count; ?>]" value="<?php echo isset($amberu_price_array[$amberu_i]) ? $amberu_price_array[$amberu_i] : ''; ?>" 
-										placeholder="<?php echo "Цена"; ?>" id="input-amberu-price-<?php echo $amberu_price_count; ?>" class="form-control" 
+									<input type="text" name="amberu_price_array[<?php echo $amberu_price_count; ?>]" value="<?php echo isset($amberu_price_array[$amberu_i]) ? $amberu_price_array[$amberu_i] : ''; ?>"
+										placeholder="<?php echo "Цена"; ?>" id="input-amberu-price-<?php echo $amberu_price_count; ?>" class="form-control"
 										onkeyup="amberuTrimInputValue(this)"
 									/>
 								</div>
 							</div>
-					<?php 
+					<?php
 						}
 					?>
 				</div>
@@ -532,15 +532,15 @@
 							else {
 								flag = false;
 								break;
-							}	
+							}
 						}
 					}
 					if(flag) {
 						$('#amberu-submit-btn').trigger('click');
-					}						
+					}
 					else {
 						alert('Amberu Multiprice Предупреждение: заполните пустые и(или) нулевые поля цен!');
-					}						
+					}
 				}
 				function changePricesNumber(pricesCount){
 					var itemParent = document.getElementById('amberu-prices-container');
@@ -557,7 +557,7 @@
 							amberuAddItem(itemParent.id);
 						}
 					}
-				}					
+				}
 				function amberuCategoryChanged(category_id) {
 					var pricesCount = document.getElementById('hidden-amberu-' + category_id + '-count').value;
 					changePricesNumber(pricesCount);
@@ -618,11 +618,11 @@
 						var newItemNumber = parseInt(lastItemNumber) + 1;
 					}
 					//alert(newItemNumber);
-					var newItem = document.createElement('div'); 
+					var newItem = document.createElement('div');
 					newItem.setAttribute('id','amberu-price-' + newItemNumber + '-container');
 					newItem.setAttribute('class','form-group amberu-price-form-group');
 					//var selectForCustomerGroup = document.getElementById('select-amberu-pricelist-blank-customer-group');
-					// back slash "\" here - special symbol, makes a new line symbol part of a string 
+					// back slash "\" here - special symbol, makes a new line symbol part of a string
 					newItem.innerHTML = '\
 						<label class="col-sm-2 control-label" for="input-amberu-price-' + newItemNumber + '">\
 							<span data-toggle="tooltip" title="Цена прайслиста №' + newItemNumber + '">Цена ' + newItemNumber + '</span>\
@@ -652,10 +652,10 @@
 						input.value = input.value.substring(0, secondDotPosition) + input.value.substring(secondDotPosition+1);
 					}
 				}
-				
+
 			</script>
 			<!--END-->
-			
+
             <div class="tab-pane" id="tab-attribute">
               <div class="table-responsive">
                 <table id="attribute" class="table table-striped table-bordered table-hover">
@@ -908,7 +908,7 @@
                   <tbody>
                     <?php $recurring_row = 0; ?>
                     <?php foreach ($product_recurrings as $product_recurring) { ?>
-                    
+
                     <tr id="recurring-row<?php echo $recurring_row; ?>">
                       <td class="text-left"><select name="product_recurrings[<?php echo $recurring_row; ?>][recurring_id]" class="form-control">
                           <?php foreach ($recurrings as $recurring) { ?>
@@ -996,7 +996,17 @@
                 </table>
               </div>
             </div>
+            <style type="text/css">
+              #tab-special .amberu-caption {
+                font-size: 14px;
+                font-weight: bold;
+              }
+            </style>
             <div class="tab-pane" id="tab-special">
+              <?php if (!$amberu_multiprice) { ?>
+              <p class="amberu-caption text-danger"><?php echo $text_amberu_special_check_multiprice?></p>
+              <?php } ?>
+              <p class="amberu-caption"><?php echo $text_amberu_special_customer_group_warning?></p>
               <div class="table-responsive">
                 <table id="special" class="table table-striped table-bordered table-hover">
                   <thead>
@@ -1023,7 +1033,13 @@
                           <?php } ?>
                         </select></td>
                       <td class="text-right"><input type="text" name="product_special[<?php echo $special_row; ?>][priority]" value="<?php echo $product_special['priority']; ?>" placeholder="<?php echo $entry_quantity; ?>" class="form-control" /></td>
-                      <td class="text-right"><input type="text" name="product_special[<?php echo $special_row; ?>][price]" value="<?php echo $product_special['price']; ?>" placeholder="<?php echo $entry_price; ?>" class="form-control" /></td>
+                      <td class="text-right">
+                        <input type="<?php echo $amberu_multiprice ? "hidden" : "text"; ?>"
+                               name="product_special[<?php echo $special_row; ?>][price]"
+                               value="<?php echo $product_special['price']; ?>"
+                               placeholder="<?php echo $entry_price; ?>" class="form-control" />
+                        <?php echo $amberu_multiprice ? "<strong>Amberu Multiprice</strong>" : ""; ?>
+                      </td>
                       <td class="text-left" style="width: 20%;"><div class="input-group date">
                           <input type="text" name="product_special[<?php echo $special_row; ?>][date_start]" value="<?php echo $product_special['date_start']; ?>" placeholder="<?php echo $entry_date_start; ?>" data-date-format="YYYY-MM-DD" class="form-control" />
                           <span class="input-group-btn">
@@ -1034,8 +1050,27 @@
                           <span class="input-group-btn">
                           <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
                           </span></div></td>
-                      <td class="text-left"><button type="button" onclick="$('#special-row<?php echo $special_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                      <td class="text-left"><button type="button"
+                          onclick="$('#special-row<?php echo $special_row; ?>').remove();$('.special-row<?php echo $special_row; ?>-amberu-price').remove()"
+                          data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
                     </tr>
+                    <?php
+                    if ($amberu_multiprice) {
+                        $amberu_price_count = 0;
+                        for($amberu_i = 0; $amberu_i < $amberu_pricelists_count; $amberu_i++) {
+                            $amberu_price_count++; ?>
+                            <tr class="special-row<?php echo $special_row; ?>-amberu-price">
+                              <td class="text-right" colspan="2"><?php echo $entry_price . " " . $amberu_price_count; ?></td>
+                              <td class="text-right">
+                                <input type="text"
+                                       name="product_special[<?php echo $special_row; ?>][amberu_prices][<?php echo $amberu_price_count; ?>]"
+                                       value="<?php echo $product_special['amberu_prices'][$amberu_price_count]; ?>"
+                                       placeholder="<?php echo $entry_price; ?>" class="form-control" />
+                              </td>
+                              <td colspan="3"></td>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
                     <?php $special_row++; ?>
                     <?php } ?>
                   </tbody>
@@ -1049,7 +1084,7 @@
               </div>
             </div>
             <div class="tab-pane" id="tab-image">
-			  
+
 			  <!--//AMBERU-->
 			  <style>
 			    #amberu-images-to-option-container{
@@ -1080,7 +1115,7 @@
 				<select name="amberu_images_to_options" class="form-control">
 				  <option value="0"><?php echo $amberu_text_missing; ?></option>
 				  <?php foreach ($amberu_images_options as $amberu_images_option) { ?>
-				  <option value="<?php echo $amberu_images_option['option_id']; ?>" 
+				  <option value="<?php echo $amberu_images_option['option_id']; ?>"
 				    <?php echo $amberu_images_to_options == $amberu_images_option['option_id'] ? 'selected="selected"' : ''; ?>
 				  >
 					<?php echo $amberu_images_option['name']; ?>
@@ -1088,8 +1123,8 @@
 				  <?php } ?>
 				</select>
 			  </div>
-			  
-			  
+
+
               <div class="table-responsive">
                 <table id="images" class="table table-striped table-bordered table-hover">
                   <thead>
@@ -1113,9 +1148,9 @@
 						  <?php } else { ?>
 						    <option value="0"><?php echo $amberu_text_missing; ?></option>
 							<?php foreach($amberu_images_to_options_values as $amberu_images_to_options_value) { ?>
-						    <option 
-							  <?php echo ($amberu_images_to_options_value['option_value_id'] == $product_image['amberu_option_value_id']) ? 
-								'selected="selected"' : ''; 
+						    <option
+							  <?php echo ($amberu_images_to_options_value['option_value_id'] == $product_image['amberu_option_value_id']) ?
+								'selected="selected"' : '';
 							  ?>
 							  value="<?php echo $amberu_images_to_options_value['option_value_id']; ?>"><?php echo $amberu_images_to_options_value['name']; ?>
 							</option>
@@ -1137,7 +1172,7 @@
                 </table>
               </div>
             </div>
-			
+
 <script>
 $('select[name=\'amberu_images_to_options\']').change( function(e) {
 	$('#images tfoot button').addClass('disabled');
@@ -1149,7 +1184,7 @@ $('select[name=\'amberu_images_to_options\']').change( function(e) {
 			data: 'option_id=' + $(e['delegateTarget']).val(),
 			dataType: 'json',
 			success: function(json) {
-				var html = 
+				var html =
 				'<option value="0">' + json['amberu_text_missing'] + '</option>'
 				;
 				for (var i=0; i < json['option_value'].length; i++) {
@@ -1179,9 +1214,9 @@ function amberuImagesRemoveButton() {
 	}
 }
 </script>
-			
+
 			<!--//end-->
-			
+
             <div class="tab-pane" id="tab-reward">
               <div class="form-group">
                 <label class="col-lg-2 control-label" for="input-points"><span data-toggle="tooltip" title="<?php echo $help_points; ?>"><?php echo $entry_points; ?></span></label>
@@ -1259,20 +1294,20 @@ function amberuImagesRemoveButton() {
 <?php foreach ($languages as $language) { ?>
 $('#input-description<?php echo $language['language_id']; ?>').summernote({height: 300});
 <?php } ?>
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 // Manufacturer
 $('input[name=\'manufacturer\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				json.unshift({
 					manufacturer_id: 0,
 					name: '<?php echo $text_none; ?>'
 				});
-				
+
 				response($.map(json, function(item) {
 					return {
 						label: item['name'],
@@ -1285,7 +1320,7 @@ $('input[name=\'manufacturer\']').autocomplete({
 	'select': function(item) {
 		$('input[name=\'manufacturer\']').val(item['label']);
 		$('input[name=\'manufacturer_id\']').val(item['value']);
-	}	
+	}
 });
 
 // Category
@@ -1293,7 +1328,7 @@ $('input[name=\'category\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
@@ -1306,10 +1341,10 @@ $('input[name=\'category\']').autocomplete({
 	},
 	'select': function(item) {
 		$('input[name=\'category\']').val('');
-		
+
 		$('#product-category' + item['value']).remove();
-		
-		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');	
+
+		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
 	}
 });
 
@@ -1322,7 +1357,7 @@ $('input[name=\'filter\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/filter/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
@@ -1335,11 +1370,11 @@ $('input[name=\'filter\']').autocomplete({
 	},
 	'select': function(item) {
 		$('input[name=\'filter\']').val('');
-		
+
 		$('#product-filter' + item['value']).remove();
-		
-		$('#product-filter').append('<div id="product-filter' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_filter[]" value="' + item['value'] + '" /></div>');	
-	}	
+
+		$('#product-filter').append('<div id="product-filter' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_filter[]" value="' + item['value'] + '" /></div>');
+	}
 });
 
 $('#product-filter').delegate('.fa-minus-circle', 'click', function() {
@@ -1351,7 +1386,7 @@ $('input[name=\'download\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
@@ -1364,11 +1399,11 @@ $('input[name=\'download\']').autocomplete({
 	},
 	'select': function(item) {
 		$('input[name=\'download\']').val('');
-		
+
 		$('#product-download' + item['value']).remove();
-		
-		$('#product-download').append('<div id="product-download' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_download[]" value="' + item['value'] + '" /></div>');	
-	}	
+
+		$('#product-download').append('<div id="product-download' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_download[]" value="' + item['value'] + '" /></div>');
+	}
 });
 
 $('#product-download').delegate('.fa-minus-circle', 'click', function() {
@@ -1380,7 +1415,7 @@ $('input[name=\'related\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
@@ -1393,17 +1428,17 @@ $('input[name=\'related\']').autocomplete({
 	},
 	'select': function(item) {
 		$('input[name=\'related\']').val('');
-		
+
 		$('#product-related' + item['value']).remove();
-		
-		$('#product-related').append('<div id="product-related' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_related[]" value="' + item['value'] + '" /></div>');	
-	}	
+
+		$('#product-related').append('<div id="product-related' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_related[]" value="' + item['value'] + '" /></div>');
+	}
 });
 
 $('#product-related').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 var attribute_row = <?php echo $attribute_row; ?>;
 
@@ -1417,11 +1452,11 @@ function addAttribute() {
 	html += '  </td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#attribute-row' + attribute_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
     html += '</tr>';
-	
+
 	$('#attribute tbody').append(html);
-	
+
 	attributeautocomplete(attribute_row);
-	
+
 	attribute_row++;
 }
 
@@ -1430,7 +1465,7 @@ function attributeautocomplete(attribute_row) {
 		'source': function(request, response) {
 			$.ajax({
 				url: 'index.php?route=catalog/attribute/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-				dataType: 'json',			
+				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {
 						return {
@@ -1452,15 +1487,15 @@ function attributeautocomplete(attribute_row) {
 $('#attribute tbody tr').each(function(index, element) {
 	attributeautocomplete(index);
 });
-//--></script> 
-  <script type="text/javascript"><!--	
+//--></script>
+  <script type="text/javascript"><!--
 var option_row = <?php echo $option_row; ?>;
 
 $('input[name=\'option\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/option/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',			
+			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
@@ -1480,7 +1515,7 @@ $('input[name=\'option\']').autocomplete({
 		html += '	<input type="hidden" name="product_option[' + option_row + '][name]" value="' + item['label'] + '" />';
 		html += '	<input type="hidden" name="product_option[' + option_row + '][option_id]" value="' + item['value'] + '" />';
 		html += '	<input type="hidden" name="product_option[' + option_row + '][type]" value="' + item['type'] + '" />';
-		
+
 		html += '	<div class="form-group">';
 		html += '	  <label class="col-sm-2 control-label" for="input-required' + option_row + '"><?php echo $entry_required; ?></label>';
 		html += '	  <div class="col-sm-10"><select name="product_option[' + option_row + '][required]" id="input-required' + option_row + '" class="form-control">';
@@ -1488,53 +1523,53 @@ $('input[name=\'option\']').autocomplete({
 		html += '	      <option value="0"><?php echo $text_no; ?></option>';
 		html += '	  </select></div>';
 		html += '	</div>';
-		
+
 		if (item['type'] == 'text') {
 			html += '	<div class="form-group">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-10"><input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="<?php echo $entry_option_value; ?>" id="input-value' + option_row + '" class="form-control" /></div>';
 			html += '	</div>';
 		}
-		
+
 		if (item['type'] == 'textarea') {
 			html += '	<div class="form-group">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-10"><textarea name="product_option[' + option_row + '][value]" rows="5" placeholder="<?php echo $entry_option_value; ?>" id="input-value' + option_row + '" class="form-control"></textarea></div>';
-			html += '	</div>';			
+			html += '	</div>';
 		}
-		 
+
 		if (item['type'] == 'file') {
 			html += '	<div class="form-group" style="display: none;">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-10"><input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="<?php echo $entry_option_value; ?>" id="input-value' + option_row + '" class="form-control" /></div>';
 			html += '	</div>';
 		}
-						
+
 		if (item['type'] == 'date') {
 			html += '	<div class="form-group">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-3"><div class="input-group date"><input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="<?php echo $entry_option_value; ?>" data-date-format="YYYY-MM-DD" id="input-value' + option_row + '" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></div>';
 			html += '	</div>';
 		}
-		
+
 		if (item['type'] == 'time') {
 			html += '	<div class="form-group">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-10"><div class="input-group time"><input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="<?php echo $entry_option_value; ?>" data-date-format="HH:mm" id="input-value' + option_row + '" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></div>';
 			html += '	</div>';
 		}
-				
+
 		if (item['type'] == 'datetime') {
 			html += '	<div class="form-group">';
 			html += '	  <label class="col-sm-2 control-label" for="input-value' + option_row + '"><?php echo $entry_option_value; ?></label>';
 			html += '	  <div class="col-sm-10"><div class="input-group datetime"><input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="<?php echo $entry_option_value; ?>" data-date-format="YYYY-MM-DD HH:mm" id="input-value' + option_row + '" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></div>';
 			html += '	</div>';
 		}
-			
+
 		if (item['type'] == 'select' || item['type'] == 'radio' || item['type'] == 'checkbox' || item['type'] == 'image') {
 			html += '<div class="table-responsive">';
 			html += '  <table id="option-value' + option_row + '" class="table table-striped table-bordered table-hover">';
-			html += '  	 <thead>'; 
+			html += '  	 <thead>';
 			html += '      <tr>';
 			html += '        <td class="text-left"><?php echo $entry_option_value; ?></td>';
 			html += '        <td class="text-right"><?php echo $entry_quantity; ?></td>';
@@ -1555,49 +1590,49 @@ $('input[name=\'option\']').autocomplete({
 			html += '    </tfoot>';
 			html += '  </table>';
 			html += '</div>';
-			
+
             html += '  <select id="option-values' + option_row + '" style="display: none;">';
-			
+
             for (i = 0; i < item['option_value'].length; i++) {
 				html += '  <option value="' + item['option_value'][i]['option_value_id'] + '">' + item['option_value'][i]['name'] + '</option>';
             }
 
-            html += '  </select>';	
-			html += '</div>';	
+            html += '  </select>';
+			html += '</div>';
 		}
-		
+
 		$('#tab-option .tab-content').append(html);
-			
+
 		$('#option > li:last-child').before('<li><a href="#tab-option' + option_row + '" data-toggle="tab"><i class="fa fa-minus-circle" onclick="$(\'a[href=\\\'#tab-option' + option_row + '\\\']\').parent().remove(); $(\'#tab-option' + option_row + '\').remove(); $(\'#option a:first\').tab(\'show\')"></i> ' + item['label'] + '</li>');
-		
+
 		$('#option a[href=\'#tab-option' + option_row + '\']').tab('show');
-		
+
 		$('.date').datetimepicker({
 			pickTime: false
 		});
-		
+
 		$('.time').datetimepicker({
 			pickDate: false
 		});
-		
+
 		$('.datetime').datetimepicker({
 			pickDate: true,
 			pickTime: true
 		});
-				
+
 		option_row++;
-	}	
+	}
 });
-//--></script> 
-  <script type="text/javascript"><!--		
+//--></script>
+  <script type="text/javascript"><!--
 var option_value_row = <?php echo $option_value_row; ?>;
 
-function addOptionValue(option_row) {	
+function addOptionValue(option_row) {
 	html  = '<tr id="option-value-row' + option_value_row + '">';
 	html += '  <td class="text-left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][option_value_id]" class="form-control">';
 	html += $('#option-values' + option_row).html();
 	html += '  </select><input type="hidden" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][product_option_value_id]" value="" /></td>';
-	html += '  <td class="text-right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" placeholder="<?php echo $entry_quantity; ?>" class="form-control" /></td>'; 
+	html += '  <td class="text-right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" placeholder="<?php echo $entry_quantity; ?>" class="form-control" /></td>';
 	html += '  <td class="text-left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][subtract]" class="form-control">';
 	html += '    <option value="1"><?php echo $text_yes; ?></option>';
 	html += '    <option value="0"><?php echo $text_no; ?></option>';
@@ -1611,7 +1646,7 @@ function addOptionValue(option_row) {
 	html += '    <option value="+">+</option>';
 	html += '    <option value="-">-</option>';
 	html += '  </select>';
-	html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][points]" value="" placeholder="<?php echo $entry_points; ?>" class="form-control" /></td>';	
+	html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][points]" value="" placeholder="<?php echo $entry_points; ?>" class="form-control" /></td>';
 	html += '  <td class="text-right"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight_prefix]" class="form-control">';
 	html += '    <option value="+">+</option>';
 	html += '    <option value="-">-</option>';
@@ -1619,66 +1654,86 @@ function addOptionValue(option_row) {
 	html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight]" value="" placeholder="<?php echo $entry_weight; ?>" class="form-control" /></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(this).tooltip(\'destroy\');$(\'#option-value-row' + option_value_row + '\').remove();" data-toggle="tooltip" rel="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
-	
+
 	$('#option-value' + option_row + ' tbody').append(html);
         $('[rel=tooltip]').tooltip();
-        
+
 	option_value_row++;
 }
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 var discount_row = <?php echo $discount_row; ?>;
 
 function addDiscount() {
-	html  = '<tr id="discount-row' + discount_row + '">'; 
+	html  = '<tr id="discount-row' + discount_row + '">';
     html += '  <td class="text-left"><select name="product_discount[' + discount_row + '][customer_group_id]" class="form-control">';
     <?php foreach ($customer_groups as $customer_group) { ?>
     html += '    <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
     <?php } ?>
-    html += '  </select></td>';		
+    html += '  </select></td>';
     html += '  <td class="text-right"><input type="text" name="product_discount[' + discount_row + '][quantity]" value="" placeholder="<?php echo $entry_quantity; ?>" class="form-control" /></td>';
     html += '  <td class="text-right"><input type="text" name="product_discount[' + discount_row + '][priority]" value="" placeholder="<?php echo $entry_priority; ?>" class="form-control" /></td>';
 	html += '  <td class="text-right"><input type="text" name="product_discount[' + discount_row + '][price]" value="" placeholder="<?php echo $entry_price; ?>" class="form-control" /></td>';
     html += '  <td class="text-left"><div class="input-group date"><input type="text" name="product_discount[' + discount_row + '][date_start]" value="" placeholder="<?php echo $entry_date_start; ?>" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
 	html += '  <td class="text-left"><div class="input-group date"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" placeholder="<?php echo $entry_date_end; ?>" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#discount-row' + discount_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';	
-	
+	html += '</tr>';
+
 	$('#discount tbody').append(html);
 
 	$('.date').datetimepicker({
 		pickTime: false
 	});
-	
+
 	discount_row++;
 }
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 var special_row = <?php echo $special_row; ?>;
 
+// AMBERU
 function addSpecial() {
-	html  = '<tr id="special-row' + special_row + '">'; 
+	html  = '<tr id="special-row' + special_row + '">';
     html += '  <td class="text-left"><select name="product_special[' + special_row + '][customer_group_id]" class="form-control">';
     <?php foreach ($customer_groups as $customer_group) { ?>
     html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
     <?php } ?>
-    html += '  </select></td>';		
+    html += '  </select></td>';
     html += '  <td class="text-right"><input type="text" name="product_special[' + special_row + '][priority]" value="" placeholder="<?php echo $entry_priority; ?>" class="form-control" /></td>';
-	html += '  <td class="text-right"><input type="text" name="product_special[' + special_row + '][price]" value="" placeholder="<?php echo $entry_price; ?>" class="form-control" /></td>';
+	html += '  <td class="text-right"><input type="<?php echo $amberu_multiprice ? "hidden" : "text"; ?>" name="product_special[' + special_row + '][price]" value="" placeholder="<?php echo $entry_price; ?>" class="form-control" />';
+    html += '  <?php echo $amberu_multiprice ? "<strong>Amberu Multiprice</strong>" : ""; ?>';
+    html += '  </td>';
     html += '  <td class="text-left" style="width: 20%;"><div class="input-group date"><input type="text" name="product_special[' + special_row + '][date_start]" value="" placeholder="<?php echo $entry_date_start; ?>" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
 	html += '  <td class="text-left" style="width: 20%;"><div class="input-group date"><input type="text" name="product_special[' + special_row + '][date_end]" value="" placeholder="<?php echo $entry_date_end; ?>" data-date-format="YYYY-MM-DD" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span></div></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#special-row' + special_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
-	
+    if (<?php echo $amberu_multiprice ?>) {
+        var amberu_pricelists_count = <?php echo $amberu_pricelists_count ?>;
+        var amberu_price_count = 0;
+        for (var i = 0; i < amberu_pricelists_count; i++) {
+            amberu_price_count++;
+            html += ''
+                + '<tr class="special-row' + special_row + '-amberu-price">'
+                    + '<td class="text-right" colspan="2"><?php echo $entry_price . " "; ?>' + amberu_price_count + '</td>'
+                    + '<td class="text-right">'
+                        + '<input type="text"'
+                        + 'name="product_special[' + special_row + '][amberu_prices][' + amberu_price_count + ']"'
+                        + 'value="" placeholder="<?php echo $entry_price; ?>" class="form-control" />'
+                    + '</td>'
+                    + '<td colspan="3"></td>'
+                + '</tr>';
+        }
+    }
+// END
 	$('#special tbody').append(html);
 
 	$('.date').datetimepicker({
 		pickTime: false
 	});
-		
+
 	special_row++;
 }
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 var image_row = <?php echo $image_row; ?>;
 
@@ -1687,8 +1742,8 @@ function addImage() {
 	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
 	html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
 	//AMBERU
-	var amberuSelectInnerHtml = 
-		($('.amberu-image-to-option-value-select').length) ? 
+	var amberuSelectInnerHtml =
+		($('.amberu-image-to-option-value-select').length) ?
 			$('.amberu-image-to-option-value-select').html() : '<option value="0"><?php echo $amberu_text_choose_option; ?></option>';
 	html +=
 		'<td class="text-left">\
@@ -1700,21 +1755,21 @@ function addImage() {
 	//here added amberuImagesRemoveButton(), $(this).tooltip('hide')
 	html += '  <td class="text-left"><button type="button" onclick="$(this).tooltip(\'hide\');$(\'#image-row' + image_row  + '\').remove();amberuImagesRemoveButton();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
-	
+
 	$('#images tbody').append(html);
-	
+
 	//reset copied select
 	$('#image-row' + image_row + ' .amberu-image-to-option-value-select option:selected').removeAttr('selected');
-	
+
 	image_row++;
 }
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 var recurring_row = <?php echo $recurring_row; ?>;
 
 function addRecurring() {
 	recurring_row++;
-	
+
 	html  = '';
 	html += '<tr id="recurring-row' + recurring_row + '">';
 	html += '  <td class="left">';
@@ -1735,10 +1790,10 @@ function addRecurring() {
 	html += '    <a onclick="$(\'#recurring-row' + recurring_row + '\').remove()" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></a>';
 	html += '  </td>';
 	html += '</tr>';
-	
+
 	$('#tab-recurring table tbody').append(html);
 }
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('.date').datetimepicker({
 	pickTime: false
@@ -1752,7 +1807,7 @@ $('.datetime').datetimepicker({
 	pickDate: true,
 	pickTime: true
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 $('#option a:first').tab('show');

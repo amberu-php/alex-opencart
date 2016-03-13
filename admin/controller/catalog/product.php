@@ -537,6 +537,9 @@ class ControllerCatalogProduct extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_percent'] = $this->language->get('text_percent');
 		$data['text_amount'] = $this->language->get('text_amount');
+		// AMBERU
+		$data['text_amberu_special_check_multiprice'] = $this->language->get('text_amberu_special_check_multiprice');
+		$data['text_amberu_special_customer_group_warning'] = $this->language->get('text_amberu_special_customer_group_warning');
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
@@ -889,7 +892,6 @@ class ControllerCatalogProduct extends Controller {
 			} else {
 				$data['amberu_images_to_options'] = 0;
 			}
-		
 		
 		//end
 
@@ -1256,7 +1258,9 @@ class ControllerCatalogProduct extends Controller {
 				'priority'          => $product_special['priority'],
 				'price'             => $product_special['price'],
 				'date_start'        => ($product_special['date_start'] != '0000-00-00') ? $product_special['date_start'] : '',
-				'date_end'          => ($product_special['date_end'] != '0000-00-00') ? $product_special['date_end'] :  ''
+				'date_end'          => ($product_special['date_end'] != '0000-00-00') ? $product_special['date_end'] :  '',
+				// AMBERU
+				'amberu_prices'		=> json_decode($product_special['amberu_prices'], true)
 			);
 		}
 

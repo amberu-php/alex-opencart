@@ -389,11 +389,6 @@ class ControllerProductProduct extends Controller {
 			foreach ($this->model_catalog_product->getProductOptions($this->request->get['product_id']) as $option) {
 				$product_option_value_data = array();
 
-				//AMBERU - images_to_options
-				if ($amberu_images_to_option) {
-					$amberu_images_to_option_processed = true;
-				}
-
 				foreach ($option['product_option_value'] as $option_value) {
 					if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
 						if ((($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) && (float)$option_value['price']) {
@@ -425,7 +420,10 @@ class ControllerProductProduct extends Controller {
 							}
 						}
 					}
+				}
 
+				if (!$amberu_images_to_option_processed && $amberu_images_to_option) {
+					$amberu_images_to_option_processed = true;
 				}
 
 				$data['options'][] = array(

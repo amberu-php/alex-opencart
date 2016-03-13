@@ -14,6 +14,8 @@ $_['text_option']            = 'Опция';
 $_['text_option_value']      = 'Значение опции';
 $_['text_percent']           = 'Процент';
 $_['text_amount']            = 'Фиксированная сумма';
+$_['text_amberu_special_check_multiprice'] = 'Отметьте продукт как мультиценовой и сохраните изменения, чтобы иметь вожзможность указывать акционную цену для каждой ценовой категории.';
+$_['text_amberu_special_customer_group_warning'] = '<strong class="text-uppercase text-danger">Будьте внимательны!</strong> Каждая акция устанавливается только для одной, выбранной группы клиентов';
 
 // Column
 $_['column_name']            = 'Название товара';

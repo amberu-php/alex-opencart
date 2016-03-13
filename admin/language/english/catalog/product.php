@@ -14,6 +14,8 @@ $_['text_option']            = 'Option';
 $_['text_option_value']      = 'Option Value';
 $_['text_percent']           = 'Percentage';
 $_['text_amount']            = 'Fixed Amount';
+$_['text_amberu_special_check_multiprice'] = 'You should check this product as multiprice and save it to have ability to choose special price for every price category';
+$_['text_amberu_special_customer_group_warning'] = '<strong class="text-uppercase text-danger">Attention!</strong> Every special defined only for a particular customer group';
 
 // Column
 $_['column_name']            = 'Product Name';

@@ -1,0 +1,1 @@
+ALTER TABLE  `oc_product_special` ADD  `amberu_prices` TEXT NOT NULL AFTER  `price`

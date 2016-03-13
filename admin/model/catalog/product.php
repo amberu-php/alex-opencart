@@ -99,9 +99,21 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
+		// AMBERU
+		// User doesn't have an ability to add multiprice specials until he saves the product
+		// BUT he could copy product!!! So we handle multiprice special here to
 		if (isset($data['product_special'])) {
 			foreach ($data['product_special'] as $product_special) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
+				$amberu_special_prices_encoded =
+					isset($product_special['amberu_prices']) ?
+						json_encode($product_special['amberu_prices']) :
+						"";
+				$amberu_special_prices_encoded = $this->db->escape($amberu_special_prices_encoded);
+				// init price to multiprice retail price
+				if (isset($product_special['amberu_prices'][1])) {
+					$product_special['price'] = $product_special['amberu_prices'][1];
+				}
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', amberu_prices = '" . $amberu_special_prices_encoded . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
 			}
 		}
 
@@ -278,9 +290,19 @@ class ModelCatalogProduct extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 
+		// AMBERU
 		if (isset($data['product_special'])) {
 			foreach ($data['product_special'] as $product_special) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
+				$amberu_special_prices_encoded =
+					isset($product_special['amberu_prices']) ?
+						json_encode($product_special['amberu_prices']) :
+						"";
+				$amberu_special_prices_encoded = $this->db->escape($amberu_special_prices_encoded);
+				// init price to multiprice retail price
+				if (isset($product_special['amberu_prices'][1])) {
+					$product_special['price'] = $product_special['amberu_prices'][1];
+				}
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', amberu_prices = '" . $amberu_special_prices_encoded . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
 			}
 		}
 
